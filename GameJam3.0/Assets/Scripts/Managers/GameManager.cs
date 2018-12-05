@@ -14,5 +14,5 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-    //Dimitrije budi ljubazan da editujes ovaj kod
+    //STOKICU JEBOTE NEKO TI OBRISAO KOD
 }
