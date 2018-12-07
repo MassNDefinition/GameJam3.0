@@ -15,4 +15,5 @@ public class GameManager : MonoBehaviour {
 	}
 
     //STOKICU JEBOTE NEKO TI OBRISAO KOD
+    //Dimitrije je mnogo glup danas
 }
