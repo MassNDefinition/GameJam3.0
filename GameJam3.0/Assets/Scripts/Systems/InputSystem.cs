@@ -44,42 +44,49 @@ public class InputSystem : ComponentSystem
     {
         foreach (Components entity in GetEntities<Components>())
         {
-            ECommands currentCommand = ECommands.Invalid;
-            if (!bindings.TryGetValue(DetectPressedKeyOrButton(), out currentCommand))
-            {
-                return;
-            }
+            List<KeyCode> pressedKeys = DetectPressedKeyOrButton();
 
-            switch (currentCommand)
+            foreach(KeyCode keyCode in pressedKeys)
             {
-                case ECommands.Up:
-                    MovePlayer(entity, EDirections.Up);
-                    break;
-                case ECommands.Left:
-                    MovePlayer(entity, EDirections.Left);
-                    break;
-                case ECommands.Right:
-                    MovePlayer(entity, EDirections.Right);
-                    break;
-                case ECommands.Down:
-                    MovePlayer(entity, EDirections.Down);
-                    break;
-                case ECommands.Action:
-                    break;
+                ECommands currentCommand = ECommands.Invalid;
+
+                if (!bindings.TryGetValue(keyCode, out currentCommand))
+                {
+                    continue;
+                }
+
+                switch (currentCommand)
+                {
+                    case ECommands.Up:
+                        MovePlayer(entity, EDirections.Up);
+                        break;
+                    case ECommands.Left:
+                        MovePlayer(entity, EDirections.Left);
+                        break;
+                    case ECommands.Right:
+                        MovePlayer(entity, EDirections.Right);
+                        break;
+                    case ECommands.Down:
+                        MovePlayer(entity, EDirections.Down);
+                        break;
+                    case ECommands.Action:
+                        break;
+                }
             }
         }
     }
 
-    private KeyCode DetectPressedKeyOrButton()
+    private List<KeyCode> DetectPressedKeyOrButton()
     {
+        List<KeyCode> result = new List<KeyCode>();
         foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKeyDown(keyCode))
+            if (Input.GetKey(keyCode))
             {
-                return keyCode;
+                result.Add(keyCode);
             }
         }
-        return KeyCode.None;
+        return result;
     }
 
     private void MovePlayer(Components entity, EDirections eDirection)
@@ -87,16 +94,16 @@ public class InputSystem : ComponentSystem
         switch (eDirection)
         {
             case EDirections.Up:
-                entity.transform.position += new Vector3(0, 1);
+                entity.transform.position += new Vector3(0, entity.inputComponent.speed * Time.deltaTime);
                 break;
             case EDirections.Down:
-                entity.transform.position += new Vector3(0, -1);
+                entity.transform.position += new Vector3(0, -entity.inputComponent.speed * Time.deltaTime);
                 break;
             case EDirections.Left:
-                entity.transform.position += new Vector3(-1, 0);
+                entity.transform.position += new Vector3(-entity.inputComponent.speed * Time.deltaTime, 0);
                 break;
             case EDirections.Right:
-                entity.transform.position += new Vector3(1, 0);
+                entity.transform.position += new Vector3(entity.inputComponent.speed * Time.deltaTime, 0);
                 break;
         }
 
