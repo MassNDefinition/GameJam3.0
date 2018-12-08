@@ -6,6 +6,8 @@ public class DirectionalLightComponent : MonoBehaviour {
 
     public GameObject player;
 
+    public Transform camTransform;
+
     private Vector3 offset;
 
     // Use this for initialization
@@ -22,8 +24,7 @@ public class DirectionalLightComponent : MonoBehaviour {
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(inputMousePosition);
 
-
-        mousePosition += player.transform.position - Camera.main.transform.position;
+        Debug.Log("Light" + camTransform.position);
 
         Vector3 directionVector = (mousePosition - player.transform.position).normalized;
 

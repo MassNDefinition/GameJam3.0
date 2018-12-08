@@ -57,8 +57,6 @@ public class WeaponComponent : MonoBehaviour {
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(inputMousePosition);
 
-            mousePosition += transform.position - Camera.main.transform.position;
-
             float directionOffset =  GameManager.GM.bulletPositionOffset;
             mousePosition.x += Random.Range(-directionOffset, directionOffset);
             mousePosition.y += Random.Range(-directionOffset, directionOffset);
