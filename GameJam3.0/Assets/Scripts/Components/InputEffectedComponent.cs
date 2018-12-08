@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class InputEffectedComponent : MonoBehaviour
 {
+    public float speed;
 }
