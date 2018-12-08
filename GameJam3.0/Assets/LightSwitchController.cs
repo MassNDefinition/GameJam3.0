@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightSwitchController : MonoBehaviour {
 
     public MeshRenderer[] lights;
+    public AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,7 @@ public class LightSwitchController : MonoBehaviour {
                 if (renderer.enabled == false)
                 {
                     renderer.enabled = true;
+                    gameObject.GetComponent<AudioSource>().Play();
                 }
                 else
                 {
