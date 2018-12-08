@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthComponent : MonoBehaviour {
     
@@ -9,6 +10,7 @@ public class PlayerHealthComponent : MonoBehaviour {
 
     private float invulnerabilityTimer;
     private float currentHealth;
+    private bool changingScene;
 
     public float GetCurrentHealth()
     {
@@ -19,12 +21,19 @@ public class PlayerHealthComponent : MonoBehaviour {
     void Start ()
     {
         currentHealth = maxHealth;
+        changingScene = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		if (invulnerabilityTimer > 0)
+        if (!changingScene && currentHealth <= 0)
+        {
+            SceneManager.LoadScene("Game Over");
+            changingScene = true;
+        }
+
+        if (invulnerabilityTimer > 0)
         {
             invulnerabilityTimer -= Time.deltaTime;
         }
@@ -43,11 +52,6 @@ public class PlayerHealthComponent : MonoBehaviour {
         currentHealth -= GameManager.GM.enemyDamage;
 
         invulnerabilityTimer = invulnerabilityDuration;
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -63,10 +67,5 @@ public class PlayerHealthComponent : MonoBehaviour {
         currentHealth -= GameManager.GM.enemyDamage;
 
         invulnerabilityTimer = invulnerabilityDuration;
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }

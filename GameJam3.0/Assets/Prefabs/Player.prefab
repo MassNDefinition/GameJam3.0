@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114278382556024076}
   - component: {fileID: 58053468276775678}
   - component: {fileID: 82134765715272406}
+  - component: {fileID: 114507676605056464}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerabilityDuration: 0.5
-  maxHealth: 10000
+  maxHealth: 10
 --- !u!114 &114375477259525396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +454,19 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 5d8645bc2e5501a4ebd138db5aa609bd, type: 2}
   LightOrigin: {x: 0, y: 0, z: 1}
   Shape: 0
+--- !u!114 &114507676605056464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417115580043908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29bbc97373dbb7f4bb216c9154bd910c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammo: {fileID: 0}
+  health: {fileID: 0}
 --- !u!114 &114660318609984604
 MonoBehaviour:
   m_ObjectHideFlags: 1
