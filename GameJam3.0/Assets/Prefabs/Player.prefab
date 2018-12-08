@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 58053468276775678}
   - component: {fileID: 82134765715272406}
   - component: {fileID: 114507676605056464}
+  - component: {fileID: 114010718292528798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -372,6 +373,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114010718292528798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417115580043908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48ebc8d88e4026429a3a7112b9113d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barricadeSpawnCooldownDuration: 3
+  barricade: {fileID: 1360731332243218, guid: 131136ae57a717c428496cbacaf9ba6b, type: 2}
 --- !u!114 &114037819311057914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1417115580043908}
+  camTransform: {fileID: 0}
 --- !u!114 &114266685244232416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: {fileID: 0}
   health: {fileID: 0}
+  barricadeSpawnerCooldown: {fileID: 0}
 --- !u!114 &114660318609984604
 MonoBehaviour:
   m_ObjectHideFlags: 1
