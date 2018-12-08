@@ -37,16 +37,19 @@ public class Pathfinding : ComponentSystem
         target = GameObject.Find("Player");
         if (target != null && grid != null)
         {
+            Node currentNode = grid.NodeFromWorldPosition(target.transform.position);
+
             foreach (EnemyComponents entity in GetEntities<EnemyComponents>())
             {
                 seeker = entity.enemyMovement;
-                Node currentNode = grid.NodeFromWorldPosition(target.transform.position);
 
                 if (currentNode.iX != iOldTargetX || currentNode.iY != iOldTargetY)
                 {
                     FindPath(entity.enemyMovement.transform.position, target.transform.position);
                 }
             }
+            iOldTargetX = currentNode.iX;
+            iOldTargetY = currentNode.iY;
         }
     }
 
@@ -113,7 +116,7 @@ public class Pathfinding : ComponentSystem
         if(path.Count > 1)
         {
             path.Reverse();
-            seeker.target = path[1].worldPosition;
+            seeker.targetPath = path;
 
             grid.path = path;
         }

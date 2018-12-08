@@ -6,7 +6,9 @@ public class EnemyMovement : MonoBehaviour {
 
     public float fSpeed;
 
-    public Vector3 target;
+    public Grid grid;
+
+    public List<Node> targetPath;
     public int iPosX;
     public int iPosY;
 
@@ -17,9 +19,14 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(target != null)
+		if(targetPath != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, fSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPath[0].worldPosition, fSpeed * Time.deltaTime);
+            Node currentNode = grid.NodeFromWorldPosition(transform.position);
+            if (currentNode == targetPath[0])
+            {
+                targetPath.RemoveAt(0);
+            }
         }
 	}
 }

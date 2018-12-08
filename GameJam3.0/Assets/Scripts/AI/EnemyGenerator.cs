@@ -19,6 +19,8 @@ public class EnemyGenerator : MonoBehaviour {
             int iPosX = Mathf.RoundToInt(Random.Range(-grid.gridWorldSize.x / 2, grid.gridWorldSize.x / 2));
             int iPosY = Mathf.RoundToInt(Random.Range(-grid.gridWorldSize.y / 2, grid.gridWorldSize.y / 2));
 
+            enemyObject.GetComponent<EnemyMovement>().grid = grid;
+
             Instantiate(enemyObject, new Vector3(iPosX, iPosY) , Quaternion.identity);
         }
 	}
