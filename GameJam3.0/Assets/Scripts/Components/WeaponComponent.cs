@@ -10,6 +10,7 @@ public class WeaponComponent : MonoBehaviour {
     private float bulletCooldown;
     private float bulletTimer;
     private int currentAmmoCount;
+    public AudioClip shot;
 
     // Use this for initialization
     void Start () {
@@ -33,6 +34,7 @@ public class WeaponComponent : MonoBehaviour {
         if (currentAmmoCount > 0)
         {
             CameraShake();
+            gameObject.GetComponent<AudioSource>().PlayOneShot(shot);
         }
         else
         {
