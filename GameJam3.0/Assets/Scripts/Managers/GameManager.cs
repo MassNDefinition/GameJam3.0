@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     public float bulletCooldown;
     public float bulletPositionOffset;
     public float bulletDamage;
+    public int maxAmmoCount;
+
+    [Header("Enemy Settings")]
+    public float enemyDamage;
 
     private void Awake()
     {
