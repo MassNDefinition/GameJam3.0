@@ -12,7 +12,9 @@ public class Grid : MonoBehaviour {
 
     public List<Node> path = new List<Node>();
 
-    private Node[,] grid;
+    public bool bCanTile = false;
+
+    public Node[,] grid;
     private float fNodeDiameter;
     public int iGridSizeX;
     public int iGridSizeY;
@@ -107,6 +109,8 @@ public class Grid : MonoBehaviour {
                 grid[x, y] = new Node(bWalkable, worldPoint, x, y);
             }
         }
+
+        bCanTile = true;
     }
 
 	// Update is called once per frame

@@ -124,10 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4875fa1c1529c6942ac1d96000f91815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fSpeed: 10
-  target: {x: 0, y: 0, z: 0}
+  fSpeed: 5
+  grid: {fileID: 0}
   iPosX: 0
   iPosY: 0
+  target: {fileID: 0}
+  bStepCompleted: 1
 --- !u!114 &114787448865872390
 MonoBehaviour:
   m_ObjectHideFlags: 1
