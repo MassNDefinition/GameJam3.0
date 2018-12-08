@@ -14,7 +14,8 @@ public class Grid : MonoBehaviour {
 
     private Node[,] grid;
     private float fNodeDiameter;
-    private int iGridSizeX, iGridSizeY;
+    public int iGridSizeX;
+    public int iGridSizeY;
 
     public bool bDisplayGizmo = false;
 

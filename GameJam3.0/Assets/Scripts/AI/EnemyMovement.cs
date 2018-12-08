@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour {
     public float fSpeed;
 
     public Vector3 target;
+    public int iPosX;
+    public int iPosY;
 
 	// Use this for initialization
 	void Start () {

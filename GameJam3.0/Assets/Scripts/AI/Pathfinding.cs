@@ -11,6 +11,9 @@ public class Pathfinding : ComponentSystem
     public EnemyMovement seeker;
     public GameObject target;
 
+    private int iOldTargetX = 0;
+    private int iOldTargetY = 0;
+
     struct EnemyComponents
     {
         public EnemyMovement enemyMovement;
@@ -32,10 +35,18 @@ public class Pathfinding : ComponentSystem
     {
         grid = GameObject.Find("Terrain").GetComponent<Grid>();
         target = GameObject.Find("Player");
-        foreach (EnemyComponents entity in GetEntities<EnemyComponents>())
+        if (target != null && grid != null)
         {
-            seeker = entity.enemyMovement;
-            FindPath(entity.enemyMovement.transform.position, target.transform.position);
+            foreach (EnemyComponents entity in GetEntities<EnemyComponents>())
+            {
+                seeker = entity.enemyMovement;
+                Node currentNode = grid.NodeFromWorldPosition(target.transform.position);
+
+                if (currentNode.iX != iOldTargetX || currentNode.iY != iOldTargetY)
+                {
+                    FindPath(entity.enemyMovement.transform.position, target.transform.position);
+                }
+            }
         }
     }
 
@@ -44,22 +55,14 @@ public class Pathfinding : ComponentSystem
         Node startNode = grid.NodeFromWorldPosition(_startPoint);
         Node endNode = grid.NodeFromWorldPosition(_endPoint);
 
-        List<Node> openSet = new List<Node>();
+        Heap<Node> openSet = new Heap<Node>(grid.iGridSizeX * grid.iGridSizeY);
         HashSet<Node> closedSet = new HashSet<Node>();
 
         openSet.Add(startNode);
         while(openSet.Count > 0)
         {
-            Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; ++i)
-            {
-                if (openSet[i].iFCost < currentNode.iFCost)
-                {
-                    currentNode = openSet[i];
-                }
-            }
+            Node currentNode = openSet.RemoveFirstItem();
 
-            openSet.Remove(currentNode);
             closedSet.Add(currentNode);
 
             if(currentNode == endNode)
@@ -70,7 +73,7 @@ public class Pathfinding : ComponentSystem
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
-                if(!neighbour.bWalkable || closedSet.Contains(neighbour))
+                if((!neighbour.bWalkable && neighbour != endNode) || closedSet.Contains(neighbour))
                 {
                     continue;
                 }
@@ -86,6 +89,10 @@ public class Pathfinding : ComponentSystem
                     if(!openSet.Contains(neighbour))
                     {
                         openSet.Add(neighbour);
+                    }
+                    else
+                    {
+                        openSet.UpdateItem(neighbour);
                     }
                 }
 
@@ -103,11 +110,18 @@ public class Pathfinding : ComponentSystem
             currentNode = currentNode.parent;
         }
 
-        path.Reverse();
+        if(path.Count > 1)
+        {
+            path.Reverse();
+            seeker.target = path[1].worldPosition;
 
-        seeker.target = path[1].worldPosition;
-
-        grid.path = path;
+            grid.path = path;
+        }
+        //else
+        //{
+        //    seeker.target = target.transform.position;
+        //}
+        
     }
 
     public int GetDistance(Node _nodeFrom, Node _nodeTo)
