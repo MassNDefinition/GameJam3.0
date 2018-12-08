@@ -4,35 +4,17 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public enum EDirections
-{
-    up,
-    down,
-    left,
-    right,
-}
-
-public enum ECommands
-{
-    left,
-    right,
-    up,
-    down,
-    action,
-    invalid,
-}
-
 public class KeyboardInput : MonoBehaviour {
 
     public GameObject player;
 
     public Dictionary<KeyCode, ECommands> bindings = new Dictionary<KeyCode, ECommands>()
     {
-        { KeyCode.W, ECommands.up },
-        { KeyCode.A, ECommands.left },
-        { KeyCode.D, ECommands.right },
-        { KeyCode.S, ECommands.down },
-        { KeyCode.Space, ECommands.action },
+        { KeyCode.W, ECommands.Up },
+        { KeyCode.A, ECommands.Left },
+        { KeyCode.D, ECommands.Right },
+        { KeyCode.S, ECommands.Down },
+        { KeyCode.Space, ECommands.Action },
     };
 
 	// Use this for initialization
@@ -44,7 +26,7 @@ public class KeyboardInput : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        ECommands currentCommand = ECommands.invalid;
+        ECommands currentCommand = ECommands.Invalid;
         if (!bindings.TryGetValue(DetectPressedKeyOrButton(), out currentCommand))
         {
             return;
@@ -52,19 +34,19 @@ public class KeyboardInput : MonoBehaviour {
 
         switch (currentCommand)
         {
-            case ECommands.up:
-                MovePlayer(EDirections.up);
+            case ECommands.Up:
+                MovePlayer(EDirections.Up);
                 break;
-            case ECommands.left:
-                MovePlayer(EDirections.left);
+            case ECommands.Left:
+                MovePlayer(EDirections.Left);
                 break;
-            case ECommands.right:
-                MovePlayer(EDirections.right);
+            case ECommands.Right:
+                MovePlayer(EDirections.Right);
                 break;
-            case ECommands.down:
-                MovePlayer(EDirections.down);
+            case ECommands.Down:
+                MovePlayer(EDirections.Down);
                 break;
-            case ECommands.action:
+            case ECommands.Action:
                 break;
         }
     }
@@ -85,16 +67,16 @@ public class KeyboardInput : MonoBehaviour {
     {
         switch(eDirection)
         {
-            case EDirections.up:
+            case EDirections.Up:
                 player.transform.position += new Vector3(0, 1);
                 break;
-            case EDirections.down:
+            case EDirections.Down:
                 player.transform.position += new Vector3(0, -1);
                 break;
-            case EDirections.left:
+            case EDirections.Left:
                 player.transform.position += new Vector3(-1, 0);
                 break;
-            case EDirections.right:
+            case EDirections.Right:
                 player.transform.position += new Vector3(1, 0);
                 break;
         }
