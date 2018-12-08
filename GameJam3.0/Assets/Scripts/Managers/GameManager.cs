@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float bulletSpeed;
     public float bulletCooldown;
     public float bulletPositionOffset;
+    public float bulletDamage;
 
     private void Awake()
     {
