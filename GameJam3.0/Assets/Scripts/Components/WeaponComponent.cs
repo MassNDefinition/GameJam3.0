@@ -6,6 +6,7 @@ using Unity.Jobs;
 
 public class WeaponComponent : MonoBehaviour {
     public int weaponFiringRate;
+    public float cameraShakeDuration;
     private float bulletCooldown;
     private float bulletTimer;
 
@@ -25,8 +26,10 @@ public class WeaponComponent : MonoBehaviour {
         }
 	}
 
-    public void FireBullets(int numberOfBullets)
+    private void FireBullets(int numberOfBullets)
     {
+        CameraShake();
+
         for (int i=0; i<numberOfBullets; i++)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,5 +46,11 @@ public class WeaponComponent : MonoBehaviour {
 
             obj.GetComponent<Rigidbody2D>().velocity = new Vector2(directionVector.x * GameManager.GM.bulletSpeed, directionVector.y * GameManager.GM.bulletSpeed);
         }
+    }
+
+    private void CameraShake()
+    {
+        GameObject camera = GameObject.Find("Main Camera");
+        camera.GetComponent<CameraComponent>().shakeDuration = cameraShakeDuration;
     }
 }

@@ -204,6 +204,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1483454327}
   offsetModifier: 2
+  camTransform: {fileID: 343343485}
+  shakeDuration: 0
+  shakeAmount: 0.3
+  decreaseFactor: 1
 --- !u!1001 &657523464
 Prefab:
   m_ObjectHideFlags: 0
@@ -241,6 +245,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4647247013281054, guid: 9451a36c8bbe88045bae3be82c4eefec, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660318609984604, guid: 9451a36c8bbe88045bae3be82c4eefec,
+        type: 2}
+      propertyPath: cameraShakeDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660318609984604, guid: 9451a36c8bbe88045bae3be82c4eefec,
+        type: 2}
+      propertyPath: weaponFiringRate
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
