@@ -18,10 +18,14 @@ public class HUDComponent : MonoBehaviour {
         health.text = "HP: " + playerHealthComponent.GetCurrentHealth();
         ammo.text = "AMMO: " + weaponComponent.GetCurrentAmmo();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        health.text = "HP: " + playerHealthComponent.GetCurrentHealth();
-        ammo.text = "AMMO: " + weaponComponent.GetCurrentAmmo();
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (health != null && ammo != null)
+        {
+            health.text = "HP: " + playerHealthComponent.GetCurrentHealth();
+            ammo.text = "AMMO: " + weaponComponent.GetCurrentAmmo();
+        }
     }
 }
