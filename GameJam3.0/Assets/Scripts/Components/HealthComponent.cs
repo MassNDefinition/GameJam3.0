@@ -19,6 +19,10 @@ public class HealthComponent : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (GameObject.Find("Player") == col.gameObject)
+        {
+            return;
+        }
         currentHealth -= GameManager.GM.bulletDamage;
         Destroy(col.gameObject);
 
