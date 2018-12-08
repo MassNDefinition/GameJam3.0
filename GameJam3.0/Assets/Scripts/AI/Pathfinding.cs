@@ -1,29 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
-public class Pathfinding : MonoBehaviour {
+public class Pathfinding : ComponentSystem
+{
 
-    Grid grid;
+    public Grid grid;
 
-    public GameObject seeker;
-    public Transform target;
+    public EnemyMovement seeker;
+    public GameObject target;
+
+    struct EnemyComponents
+    {
+        public EnemyMovement enemyMovement;
+    }
 
     private void Awake()
     {
-        grid = GetComponent<Grid>();
+        
     }
     // Use this for initialization
     void Start ()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        grid = GameObject.Find("Terrain").GetComponent<Grid>();
+        target = GameObject.Find("Player");
+    }
+
+    // Update is called once per frame
+    protected override void OnUpdate()
     {
-        FindPath(seeker.transform.position, target.position);
-	}
+        grid = GameObject.Find("Terrain").GetComponent<Grid>();
+        target = GameObject.Find("Player");
+        foreach (EnemyComponents entity in GetEntities<EnemyComponents>())
+        {
+            seeker = entity.enemyMovement;
+            FindPath(entity.enemyMovement.transform.position, target.transform.position);
+        }
+    }
 
     void FindPath(Vector3 _startPoint, Vector3 _endPoint)
     {
@@ -91,7 +105,7 @@ public class Pathfinding : MonoBehaviour {
 
         path.Reverse();
 
-        seeker.GetComponent<EnemyMovement>().target = path[1].worldPosition;
+        seeker.target = path[1].worldPosition;
 
         grid.path = path;
     }

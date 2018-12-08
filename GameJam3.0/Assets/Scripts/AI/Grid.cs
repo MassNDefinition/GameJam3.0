@@ -14,34 +14,37 @@ public class Grid : MonoBehaviour {
 
     private Node[,] grid;
     private float fNodeDiameter;
-    private int iGridSizeX, iGridSizeY; 
+    private int iGridSizeX, iGridSizeY;
 
+    public bool bDisplayGizmo = false;
 
-
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 0.5f));
-        if(grid != null)
+        if (bDisplayGizmo)
         {
-            foreach(Node node in grid)
+            Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 0.5f));
+            if (grid != null)
             {
-                Node playerNode = NodeFromWorldPosition(player.position);
-                if (playerNode.worldPosition == node.worldPosition)
+                foreach (Node node in grid)
                 {
-                    Gizmos.color = Color.cyan;
+                    Node playerNode = NodeFromWorldPosition(player.position);
+                    if (playerNode.worldPosition == node.worldPosition)
+                    {
+                        Gizmos.color = Color.cyan;
+                    }
+                    else if (path != null && path.Contains(node))
+                    {
+                        Gizmos.color = Color.blue;
+                    }
+                    else
+                    {
+                        Gizmos.color = (node.bWalkable ? Color.green : Color.red);
+                    }
+                    Gizmos.DrawWireCube(node.worldPosition, Vector3.one * (fNodeDiameter - .1f));
                 }
-                else if (path != null && path.Contains(node))
-                {
-                    Gizmos.color = Color.blue;
-                }
-                else
-                {
-                    Gizmos.color = (node.bWalkable ? Color.green : Color.red);
-                }
-                Gizmos.DrawWireCube(node.worldPosition, Vector3.one * (fNodeDiameter - .1f));
             }
         }
-    }*/
+    }
 
     // Use this for initialization
     void Start ()
