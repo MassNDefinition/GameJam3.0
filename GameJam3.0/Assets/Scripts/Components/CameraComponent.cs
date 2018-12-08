@@ -52,6 +52,6 @@ public class CameraComponent : MonoBehaviour {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 directionVector = (mousePosition - player.transform.position).normalized;
 
-        transform.position = player.transform.position + offset + directionVector * offsetModifier;
+        //transform.position = player.transform.position + offset + directionVector * offsetModifier;
 	}
 }

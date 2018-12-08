@@ -52,8 +52,14 @@ public class WeaponComponent : MonoBehaviour {
             {
                 return;
             }
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float directionOffset = GameManager.GM.bulletPositionOffset;
+            Vector3 inputMousePosition = Input.mousePosition;
+            inputMousePosition.z = 0;
+
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(inputMousePosition);
+
+            mousePosition += transform.position - Camera.main.transform.position;
+
+            float directionOffset =  GameManager.GM.bulletPositionOffset;
             mousePosition.x += Random.Range(-directionOffset, directionOffset);
             mousePosition.y += Random.Range(-directionOffset, directionOffset);
             mousePosition.z = 0;

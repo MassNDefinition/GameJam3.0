@@ -17,9 +17,16 @@ public class DirectionalLightComponent : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 inputMousePosition = Input.mousePosition;
+        inputMousePosition.z = 0;
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(inputMousePosition);
+
+
+        mousePosition += player.transform.position - Camera.main.transform.position;
+
         Vector3 directionVector = (mousePosition - player.transform.position).normalized;
-        
+
         float angleOffset = GameManager.GM.bulletPositionOffset;
         mousePosition.x += Random.Range(-angleOffset, angleOffset);
         mousePosition.y += Random.Range(-angleOffset, angleOffset);
