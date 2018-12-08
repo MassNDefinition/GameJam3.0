@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114888782183937464}
   - component: {fileID: 50816616341166794}
   - component: {fileID: 58634335811920208}
+  - component: {fileID: 95050271774475788}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -37,9 +38,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992880454317200}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.3, y: -37.3, z: -20}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.6, y: 30, z: -19.800009}
+  m_LocalScale: {x: 0.4622304, y: 0.4622304, z: 0.02311152}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,9 +77,27 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.102975}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 2.0577502
+--- !u!95 &95050271774475788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992880454317200}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab5a3eccd586668439d6d137a54b30d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114684803756357300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 886d1726eaff10d4dad1a7b867ce8c05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

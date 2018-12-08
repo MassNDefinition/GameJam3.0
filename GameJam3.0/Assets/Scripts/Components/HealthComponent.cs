@@ -6,6 +6,7 @@ public class HealthComponent : MonoBehaviour {
 
     public float maxHealth;
     private float currentHealth;
+    public Sprite[] blood;
 
     // Use this for initialization
     void Start() {
@@ -25,6 +26,7 @@ public class HealthComponent : MonoBehaviour {
         }
         currentHealth -= GameManager.GM.bulletDamage;
         Destroy(col.gameObject);
+
 
         if (currentHealth <= 0)
         {
