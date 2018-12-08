@@ -25,13 +25,32 @@ public class PlayerHealthComponent : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        OnTriggerEnter2D(collision);
+        if (col.gameObject.tag != "Enemy")
+        {
+            return;
+        }
+        if (invulnerabilityTimer > 0)
+        {
+            return;
+        }
+        currentHealth -= GameManager.GM.enemyDamage;
+
+        invulnerabilityTimer = invulnerabilityDuration;
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
+        if (col.gameObject.tag != "Enemy")
+        {
+            return;
+        }
         if (invulnerabilityTimer > 0)
         {
             return;

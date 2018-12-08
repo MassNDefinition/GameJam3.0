@@ -15,7 +15,7 @@ public class DirectionalLightComponent : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 directionVector = (mousePosition - player.transform.position).normalized;
