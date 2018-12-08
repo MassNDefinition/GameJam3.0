@@ -12,6 +12,11 @@ public class WeaponComponent : MonoBehaviour {
     private int currentAmmoCount;
     public AudioClip shot;
 
+    public int GetCurrentAmmo()
+    {
+        return currentAmmoCount;
+    }
+
     // Use this for initialization
     void Start () {
         bulletCooldown = GameManager.GM.bulletCooldown;

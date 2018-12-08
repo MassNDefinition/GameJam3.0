@@ -10,6 +10,11 @@ public class PlayerHealthComponent : MonoBehaviour {
     private float invulnerabilityTimer;
     private float currentHealth;
 
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     // Use this for initialization
     void Start ()
     {
