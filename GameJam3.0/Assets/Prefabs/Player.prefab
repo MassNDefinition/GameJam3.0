@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114375477259525396}
   - component: {fileID: 114266685244232416}
   - component: {fileID: 114660318609984604}
+  - component: {fileID: 114278382556024076}
+  - component: {fileID: 58962621308497782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -64,6 +66,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58962621308497782
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417115580043908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!114 &114266685244232416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,6 +92,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf10cdea1344482e91a4f2b58506b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114278382556024076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417115580043908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af01fc5ff0deac4089609ea96a0d433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnerabilityDuration: 1
+  maxHealth: 10
 --- !u!114 &114375477259525396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponFiringRate: 5
+  cameraShakeDuration: 0
 --- !u!212 &212442530700546172
 SpriteRenderer:
   m_ObjectHideFlags: 1
