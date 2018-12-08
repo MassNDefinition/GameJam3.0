@@ -33,8 +33,13 @@ public class Pathfinding : ComponentSystem
     // Update is called once per frame
     protected override void OnUpdate()
     {
-        grid = GameObject.Find("Terrain").GetComponent<Grid>();
+        if (grid == null)
+        {
+            grid = GameObject.Find("Terrain").GetComponent<Grid>();
+        }
+
         target = GameObject.Find("Player");
+
         if (target != null && grid != null)
         {
             Node currentNode = grid.NodeFromWorldPosition(target.transform.position);
@@ -43,13 +48,15 @@ public class Pathfinding : ComponentSystem
             {
                 seeker = entity.enemyMovement;
 
-                if (currentNode.iX != iOldTargetX || currentNode.iY != iOldTargetY)
+                if (entity.enemyMovement.bStepCompleted && (currentNode.iX != entity.enemyMovement.iPosX || currentNode.iY != entity.enemyMovement.iPosY))
                 {
                     FindPath(entity.enemyMovement.transform.position, target.transform.position);
+                    entity.enemyMovement.TryNewPath();
                 }
+                entity.enemyMovement.iPosX = currentNode.iX;
+                entity.enemyMovement.iPosY = currentNode.iY;
             }
-            iOldTargetX = currentNode.iX;
-            iOldTargetY = currentNode.iY;
+           
         }
     }
 
@@ -113,18 +120,43 @@ public class Pathfinding : ComponentSystem
             currentNode = currentNode.parent;
         }
 
-        if(path.Count > 1)
+        path = SimplifyPath(path);
+
+        if(path.Count > 0)
         {
             path.Reverse();
             seeker.targetPath = path;
 
             grid.path = path;
         }
-        //else
-        //{
-        //    seeker.target = target.transform.position;
-        //}
+        else
+        {
+            Node playerNode = grid.NodeFromWorldPosition(target.transform.position);
+            path.Add(playerNode);
+            seeker.targetPath = path;
+        }
         
+    }
+
+    public List<Node> SimplifyPath(List<Node> _path)
+    {
+        List<Node> waypoints = new List<Node>();
+        Vector2 directionOld = Vector2.zero;
+        int pointTreshold = 0;
+        for(int i = 1; i < _path.Count; ++i)
+        {
+            Vector2 directionNew = new Vector2(_path[i - 1].iX - _path[i].iX, _path[i - 1].iY - _path[i].iY);
+            if(directionOld != directionNew || pointTreshold == 5)
+            {
+                waypoints.Add(_path[i]);
+                directionOld = directionNew;
+                pointTreshold = 0;
+            }
+
+            ++pointTreshold;
+        }
+
+        return waypoints;
     }
 
     public int GetDistance(Node _nodeFrom, Node _nodeTo)
