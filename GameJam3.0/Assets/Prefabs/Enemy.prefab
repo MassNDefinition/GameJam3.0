@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 58634335811920208}
   - component: {fileID: 95050271774475788}
   - component: {fileID: 114588918872276510}
+  - component: {fileID: 114787448865872390}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992880454317200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.41, y: 33.87, z: -19.800009}
+  m_LocalPosition: {x: 6.6, y: 30, z: -19.800009}
   m_LocalScale: {x: 0.4622304, y: 0.4622304, z: 0.02311152}
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,6 +128,21 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   iPosX: 0
   iPosY: 0
+--- !u!114 &114787448865872390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992880454317200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0184ff86886f974d95dfead14754f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MultiplicativeColor: {r: 0, g: 0, b: 0, a: 0.37254903}
+  AdditiveColor: {r: 0, g: 0, b: 0, a: 0}
+  Material: {fileID: 2100000, guid: 0a8c132f813f5514b9f5b48ff3956482, type: 2}
+  LightObstacleScale: 1
 --- !u!114 &114888782183937464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,7 +188,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 886d1726eaff10d4dad1a7b867ce8c05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
