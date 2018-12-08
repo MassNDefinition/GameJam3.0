@@ -217,9 +217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7fadb848f592f429fd04a3131fc615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1128749417500804, guid: 7e1c0b6d36747b043b7371a1a6594a6a,
+  bulletPrefab: {fileID: 1821216641984380, guid: 7e1c0b6d36747b043b7371a1a6594a6a,
     type: 2}
   bulletSpeed: 10
+  bulletCooldown: 0.1
+  bulletPositionOffset: 0.6
 --- !u!4 &791892692
 Transform:
   m_ObjectHideFlags: 0
