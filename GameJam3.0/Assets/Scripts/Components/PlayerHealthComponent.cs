@@ -29,8 +29,16 @@ public class PlayerHealthComponent : MonoBehaviour {
     {
         if (!changingScene && currentHealth <= 0)
         {
-            SceneManager.LoadScene("Game Over");
-            changingScene = true;
+            if (SceneManager.GetActiveScene().name == "First Swarm")
+            {
+                SceneManager.LoadScene("Cutscene 2");
+                changingScene = true;
+            }
+            else
+            {
+                SceneManager.LoadScene("Game Over");
+                changingScene = true;
+            }
         }
 
         if (invulnerabilityTimer > 0)

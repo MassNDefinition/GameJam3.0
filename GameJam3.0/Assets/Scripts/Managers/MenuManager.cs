@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.LoadScene("First Swarm");
+        SceneManager.LoadScene("Cutscene 1");
     }
 
     public void Quit()
