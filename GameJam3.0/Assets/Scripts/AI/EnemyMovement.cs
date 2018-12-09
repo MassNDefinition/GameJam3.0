@@ -19,12 +19,15 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         target = GameObject.Find("Player");
+        grid = GameObject.Find("Terrain").GetComponent<Grid>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		if(targetPath != null && targetPath.Count > 0)
+    public void ProcessMoving()
+    {
+        if (targetPath != null && targetPath.Count > 0)
         {
+            grid = GameObject.Find("Terrain").GetComponent<Grid>();
+
             transform.position = Vector2.MoveTowards(transform.position, targetPath[0].worldPosition, fSpeed * Time.deltaTime);
             Node currentNode = grid.NodeFromWorldPosition(transform.position);
             if (currentNode == targetPath[0])
@@ -37,7 +40,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, fSpeed * Time.deltaTime);
         }
-	}
+    }
 
     public void TryNewPath()
     {
